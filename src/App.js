@@ -3,6 +3,18 @@ import logo from "./logo.svg";
 import "./App.css";
 import Info from "./components/info";
 
+function Username(props) {
+  return (
+    <p
+      onClick={() => {
+        props.nameClickHandler(props.username);
+      }}
+    >
+      {props.username}
+    </p>
+  );
+}
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -32,6 +44,10 @@ class App extends React.Component {
     });
   }
 
+  userWasClicked(username) {
+    alert(username);
+  }
+
   render() {
     let updateParagraph = "";
     let nameParagraphClass = "";
@@ -51,6 +67,8 @@ class App extends React.Component {
 
     return (
       <div>
+        <Username username="Chris" nameClickHandler={this.userWasClicked} />
+        <Username username="Anna" nameClickHandler={this.userWasClicked} />
         <p className={nameParagraphClass}>{this.state.name}</p>
         {updateParagraph}
         <button onClick={this.changeName.bind(this)}>Change Name</button>
